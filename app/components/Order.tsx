@@ -5,7 +5,7 @@ const Order = () => {
     ];
     return (
         <div className="max-w-3xl mx-auto mt-20">
-            <h1 className="text-3xl text-center font-semibold text-[#5B20B6] mb-6">Order</h1>
+            <h1 className="text-3xl text-center font-semibold text-[#5B20B6] mb-6">Order Page</h1>
             <table className="w-full border-collapse">
                 <thead>
                     <tr className="text-[#5B20B6] border-b border-gray-200">

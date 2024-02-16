@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { FaShoppingCart } from "react-icons/fa";
+import { UserButton } from "@clerk/nextjs";
 
 const Header = () => {
   return (
@@ -12,6 +13,9 @@ const Header = () => {
             <div className='flex items-center relative'>
                 <FaShoppingCart className='text-3xl text-[#5B20B6] cursor-pointer'/>
                 <div className='ml-2 bg-blue-600 rounded-full w-5 h-5 flex items-center justify-center text-white text-sm font-semibold'>1</div>
+                <div className='ml-4'>
+                  <UserButton afterSignOutUrl="/"/>
+                </div>
             </div>
         </div>
     </div>
