@@ -1,7 +1,22 @@
 import Card from "./components/Card"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-const HomePage = () => {
+import { getUsersByEmail, createUser } from "@/sanity/sanity-utils"
+import { currentUser } from "@clerk/nextjs"
+
+const HomePage = async () => {
+  const user = await currentUser();
+
+  if(!user) return <div>Your are not loggedin</div>
+
+  const existingUser = await getUsersByEmail(user?.emailAddresses[0]?.emailAddress);
+  
+  if(existingUser?.length === 0){
+    await createUser({name:user?.firstName, email:user?.emailAddresses[0]?.emailAddress})
+  }
+
+
+
   return (
     <div>
       <Header />

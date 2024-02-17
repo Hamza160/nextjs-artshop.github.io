@@ -6,12 +6,24 @@ export default {
     {
       name: 'name',
       type: 'string',
-      title: 'Name'
+      title: 'Name',
+      validation: Rule => Rule.required()
     },
     {
       name: 'email',
       type: 'string',
-      title: 'Email'
-    }
+      title: 'Email',
+      validation: Rule => Rule.required().unique()
+    },
+    {
+      name: 'createdAt',
+      title: 'Created At',
+      type: 'datetime',
+      options: {
+        dateFormat: "YYYY-MM-DDTHH:mm:ssZ"
+      },
+      readonly: true,
+    },
+
   ]
 }
