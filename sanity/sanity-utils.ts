@@ -33,3 +33,32 @@ export const createUser = async (userDetails: {name:string, email:string}) => {
 
     return newUser;
 }
+
+export const getAllProducts = async() => {
+     return client.fetch(
+        groq`*[_type == "product"]{
+            _id,
+            name,
+            slug,
+            price,
+            description,
+            "image": image.asset->url,
+            createdAt
+        }`,
+    )
+}
+
+export const getProductDetailsBySlug = async(slug: string) => {
+    return client.fetch(
+        groq`*[_type == 'product' && slug == $slug]{
+             _id,
+            name,
+            slug,
+            price,
+            description,
+            "image": image.asset->url,
+            createdAt
+        }`,
+        {slug}
+    )
+}

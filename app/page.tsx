@@ -1,21 +1,21 @@
 import Card from "./components/Card"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
-import { getUsersByEmail, createUser } from "@/sanity/sanity-utils"
+import { getUsersByEmail, createUser, getAllProducts } from "@/sanity/sanity-utils"
 import { currentUser } from "@clerk/nextjs"
 
 const HomePage = async () => {
   const user = await currentUser();
 
   if(!user) return <div>Your are not loggedin</div>
-
+  
   const existingUser = await getUsersByEmail(user?.emailAddresses[0]?.emailAddress);
   
   if(existingUser?.length === 0){
     await createUser({name:user?.firstName, email:user?.emailAddresses[0]?.emailAddress})
   }
-
-
+  
+  const products: Product[] = await getAllProducts();
 
   return (
     <div>
@@ -27,12 +27,10 @@ const HomePage = async () => {
 
       <div className="flex p-10">
         <div className="mx-auto grid grid-cols-1 lg:grid-cols-3 gap-16">
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
+          {products.map((product) => (
+            <Card product={product} key={product._id}/>
+          ))}
+          
         </div>
       </div>
 
