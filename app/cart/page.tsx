@@ -1,13 +1,20 @@
-import Cart from "../components/Cart"
-import Header from "../components/Header"
+'use client';
+import Cart from "../components/Cart";
+import Header from "../components/Header";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 const Cartpage = () => {
+  const PUBLISHABLE_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
+  const stripePromise = loadStripe(PUBLISHABLE_KEY);
+
+
   return (
     <div>
         <Header />
-        <div>
+        <Elements stripe={stripePromise}>
             <Cart />
-        </div>
+        </Elements>
     </div>
   );
 }

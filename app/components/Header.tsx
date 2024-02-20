@@ -9,10 +9,12 @@ const Header = () => {
   return (
     <div className='p-3 border-b-2 border-[#f5f3ff]'>
         <div className='max-w-7xl mx-auto flex justify-between items-center'>
-            <div className='flex items-center'>
-                <Image src={'/logo.png'} width={50} height={50} alt='Logo'/>
-                <h1 className='ml-2 text-2xl lg:text-3xl font-bold'>Artistry Market</h1>
-            </div>
+            <Link href={'/'}>
+              <div className='flex items-center cursor-pointer'>
+                  <Image src={'/logo.png'} width={50} height={50} alt='Logo'/>
+                  <h1 className='ml-2 text-2xl lg:text-3xl font-bold'>Artistry Market</h1>
+              </div>
+            </Link>
             <div className='flex items-center relative'>
                 <Link href={'/cart'}>
                   <FaShoppingCart className='text-3xl text-[#5B20B6] cursor-pointer'/>

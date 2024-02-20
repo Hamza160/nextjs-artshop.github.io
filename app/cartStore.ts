@@ -1,6 +1,5 @@
 import {create} from 'zustand';
 
-
 const useCartStore: StateInterface  = create((set) => ({
     cart: [],
     cartTotal: 0,
